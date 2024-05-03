@@ -22,4 +22,9 @@ public class JwtCore {
                 .signWith(SignatureAlgorithm.HS256,secret)
                 .compact();
     }
+
+    @Deprecated
+    public String getNameFromJwt(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+    }
 }
